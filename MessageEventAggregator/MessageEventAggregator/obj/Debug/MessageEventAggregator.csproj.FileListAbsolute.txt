@@ -1,0 +1,10 @@
+C:\Projects\WPF\MessageEventAggregator\MessageEventAggregator\bin\Debug\MessageEventAggregator.dll
+C:\Projects\WPF\MessageEventAggregator\MessageEventAggregator\bin\Debug\MessageEventAggregator.pdb
+C:\Projects\WPF\MessageEventAggregator\MessageEventAggregator\bin\Debug\Prism.dll
+C:\Projects\WPF\MessageEventAggregator\MessageEventAggregator\bin\Debug\System.ValueTuple.dll
+C:\Projects\WPF\MessageEventAggregator\MessageEventAggregator\bin\Debug\Prism.pdb
+C:\Projects\WPF\MessageEventAggregator\MessageEventAggregator\bin\Debug\Prism.xml
+C:\Projects\WPF\MessageEventAggregator\MessageEventAggregator\bin\Debug\System.ValueTuple.xml
+C:\Projects\WPF\MessageEventAggregator\MessageEventAggregator\obj\Debug\MessageEventAggregator.csproj.CopyComplete
+C:\Projects\WPF\MessageEventAggregator\MessageEventAggregator\obj\Debug\MessageEventAggregator.dll
+C:\Projects\WPF\MessageEventAggregator\MessageEventAggregator\obj\Debug\MessageEventAggregator.pdb
