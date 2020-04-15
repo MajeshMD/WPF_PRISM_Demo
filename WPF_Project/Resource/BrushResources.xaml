@@ -1,0 +1,262 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WPF_Project.Resource">
+   
+
+    <Style x:Key="VerticalToolBoxToggleButtonStyle"
+           TargetType="{x:Type ToggleButton}">
+        <Setter Property="Cursor"
+                Value="Hand" />
+        <Setter Property="Width"
+                Value="24" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="MouseoverStoryBoard">
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MouseOverBorder"
+                                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                        Value="{x:Static Visibility.Visible}" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="PressedStoryBoard">
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PressedBorder"
+                                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                        Value="{x:Static Visibility.Visible}" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="CheckedStoryBoard">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TryanglePath"
+                                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                                <EasingDoubleKeyFrame KeyTime="0"
+                                                      Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="UnCheckedStoryBoard">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TryanglePath"
+                                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                                <EasingDoubleKeyFrame KeyTime="0"
+                                                      Value="180" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <!--
+										<Storyboard>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+										Storyboard.TargetName="MouseOverBorder">
+										<DiscreteObjectKeyFrame KeyTime="0"
+										Value="{x:Static Visibility.Visible}" />
+										</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									-->
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <!--
+										<Storyboard>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+										Storyboard.TargetName="PressedBorder">
+										<DiscreteObjectKeyFrame KeyTime="0"
+										Value="{x:Static Visibility.Visible}" />
+										</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									-->
+                                </VisualState>
+                                <VisualState x:Name="Disabled" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CheckStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.25"
+                                                      To="Checked" />
+                                    <VisualTransition GeneratedDuration="0:0:0.25"
+                                                      To="Unchecked" />
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Checked">
+                                    <!--
+										<Storyboard>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="path"
+										Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+										<EasingDoubleKeyFrame KeyTime="0"
+										Value="0" />
+										</DoubleAnimationUsingKeyFrames>
+										</Storyboard>
+									-->
+                                </VisualState>
+                                <VisualState x:Name="Unchecked">
+                                    <!--
+										<Storyboard>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="path"
+										Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+										<EasingDoubleKeyFrame KeyTime="0"
+										Value="180" />
+										</DoubleAnimationUsingKeyFrames>
+										</Storyboard>
+									-->
+                                </VisualState>
+                                <VisualState x:Name="Indeterminate" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="BackgroundBorder"
+                                Background="{StaticResource VerticalToggleButtonBorderBackgroundBrush}"
+                                BorderBrush="{x:Null}"
+                                BorderThickness="0"
+                                CornerRadius="0" />
+                        <Border x:Name="MouseOverBorder"
+                                Background="LightBlue"
+                                BorderBrush="{x:Null}"
+                                BorderThickness="0"
+                                CornerRadius="0"
+                                Visibility="Collapsed" />
+                        <Border x:Name="PressedBorder"
+                                Background="LightBlue"
+                                BorderBrush="{x:Null}"
+                                BorderThickness="0"
+                                CornerRadius="0"
+                                Visibility="Collapsed" />
+                        <Border x:Name="IsExpandedState"
+                                Background="#ff0d354c"
+                                BorderBrush="{x:Null}"
+                                BorderThickness="0"
+                                CornerRadius="0"
+                                Visibility="Collapsed" />
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="0.801*" />
+                            </Grid.RowDefinitions>
+                            <Path x:Name="TryanglePath"
+                                  Height="10.512"
+                                  Margin="7.679,4,8.065,2"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Center"
+                                  Data="M34.310355,34.393134 L42.388348,26.315747 42.486146,42.56869 z"
+                                  Fill="White"
+                                  RenderTransformOrigin="0.5,0.5"
+                                  Stretch="Fill"
+                                  Stroke="{x:Null}">
+                                <Path.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform />
+                                        <SkewTransform />
+                                        <RotateTransform Angle="180" />
+                                        <TranslateTransform />
+                                    </TransformGroup>
+                                </Path.RenderTransform>
+                            </Path>
+                            <Viewbox x:Name="ToolBoxTextViewbox"
+                                     Grid.Row="1"
+                                     Width="9.81"
+                                     Height="46.108"
+                                     Margin="0,0,8.065,41.674"
+                                     HorizontalAlignment="Right"
+                                     VerticalAlignment="Bottom"
+                                     OpacityMask="Black"
+                                     Stretch="Fill">
+                                <Canvas x:Name="Canvas"
+                                        Width="14.533"
+                                        Height="68.967">
+                                    <Path Canvas.Left="0.773"
+                                          Canvas.Top="58.954"
+                                          Width="13.533"
+                                          Height="10.013"
+                                          Data="F1M213.3384,371.29L213.3384,375.179L224.9644,375.179L224.9644,377.425L213.3384,377.425L213.3384,381.303L211.4314,381.303L211.4314,371.29z"
+                                          Fill="White"
+                                          Stretch="Fill" />
+                                    <Path Canvas.Left="4.416"
+                                          Canvas.Top="49.781"
+                                          Width="10.117"
+                                          Height="9.938"
+                                          Data="F1M216.8203,367.043C216.8203,367.899,217.1193,368.575,217.7173,369.072C218.3153,369.569,219.1393,369.818,220.1893,369.818C221.2023,369.818,222.0003,369.566,222.5823,369.063C223.1643,368.56,223.4553,367.887,223.4553,367.043C223.4553,366.182,223.1683,365.52,222.5963,365.057C222.0233,364.595,221.2093,364.363,220.1523,364.363C219.0893,364.363,218.2673,364.595,217.6893,365.057C217.1103,365.52,216.8203,366.182,216.8203,367.043 M225.1913,367.147C225.1913,368.639,224.7393,369.829,223.8373,370.719C222.9343,371.609,221.7373,372.055,220.2463,372.055C218.6233,372.055,217.3553,371.591,216.4433,370.662C215.5303,369.734,215.0743,368.484,215.0743,366.911C215.0743,365.401,215.5183,364.225,216.4053,363.382C217.2923,362.539,218.5223,362.117,220.0953,362.117C221.6363,362.117,222.8713,362.571,223.7993,363.48C224.7273,364.39,225.1913,365.612,225.1913,367.147"
+                                          Fill="White"
+                                          Stretch="Fill" />
+                                    <Path Canvas.Left="4.416"
+                                          Canvas.Top="38.239"
+                                          Width="10.117"
+                                          Height="9.938"
+                                          Data="F1M216.8203,355.502C216.8203,356.357,217.1193,357.034,217.7173,357.531C218.3153,358.028,219.1393,358.276,220.1893,358.276C221.2023,358.276,222.0003,358.024,222.5823,357.522C223.1643,357.019,223.4553,356.345,223.4553,355.502C223.4553,354.64,223.1683,353.978,222.5963,353.516C222.0233,353.053,221.2093,352.821,220.1523,352.821C219.0893,352.821,218.2673,353.053,217.6893,353.516C217.1103,353.978,216.8203,354.64,216.8203,355.502 M225.1913,355.606C225.1913,357.097,224.7393,358.287,223.8373,359.178C222.9343,360.068,221.7373,360.513,220.2463,360.513C218.6233,360.513,217.3553,360.049,216.4433,359.121C215.5303,358.193,215.0743,356.942,215.0743,355.37C215.0743,353.859,215.5183,352.684,216.4053,351.84C217.2923,350.997,218.5223,350.575,220.0953,350.575C221.6363,350.575,222.8713,351.03,223.7993,351.939C224.7273,352.849,225.1913,354.07,225.1913,355.606"
+                                          Fill="White"
+                                          Stretch="Fill" />
+                                    <Path Canvas.Left="0"
+                                          Canvas.Top="33.814"
+                                          Width="14.307"
+                                          Height="2.199"
+                                          Data="F1M224.965,348.349L210.658,348.349L210.658,346.15L224.965,346.15z"
+                                          Fill="White"
+                                          Stretch="Fill" />
+                                    <Path Canvas.Left="0"
+                                          Canvas.Top="21.555"
+                                          Width="14.533"
+                                          Height="9.409"
+                                          Data="F1M219.7271,341.1289L220.9261,341.1289C221.6301,341.1289,222.2281,340.9039,222.7191,340.4539C223.2091,340.0039,223.4551,339.4339,223.4551,338.7409C223.4551,337.9299,223.1391,337.2929,222.5061,336.8299C221.8741,336.3679,220.9921,336.1369,219.8591,336.1369C218.9091,336.1369,218.1651,336.3529,217.6271,336.7829C217.0891,337.2139,216.8201,337.7979,216.8201,338.5329C216.8201,339.3139,217.0981,339.9409,217.6511,340.4159C218.2051,340.8919,218.8961,341.1289,219.7271,341.1289 M223.5681,341.0719L223.5681,341.1099L224.9651,341.1099L224.9651,343.2999L210.6581,343.2999L210.6581,341.1099L217.0001,341.1099L217.0001,341.0719C215.7161,340.3229,215.0751,339.2289,215.0751,337.7879C215.0751,336.5669,215.5071,335.6119,216.3721,334.9239C217.2371,334.2349,218.3961,333.8909,219.8501,333.8909C221.4671,333.8909,222.7611,334.2769,223.7331,335.0509C224.7051,335.8249,225.1911,336.8819,225.1911,338.2219C225.1911,339.4809,224.6501,340.4309,223.5681,341.0719"
+                                          Fill="White"
+                                          Stretch="Fill" />
+                                    <Path Canvas.Left="4.416"
+                                          Canvas.Top="10.003"
+                                          Width="10.117"
+                                          Height="9.938"
+                                          Data="F1M216.8203,327.2656C216.8203,328.1206,217.1193,328.7976,217.7173,329.2946C218.3153,329.7916,219.1393,330.0396,220.1893,330.0396C221.2023,330.0396,222.0003,329.7876,222.5823,329.2856C223.1643,328.7826,223.4553,328.1086,223.4553,327.2656C223.4553,326.4036,223.1683,325.7416,222.5963,325.2796C222.0233,324.8166,221.2093,324.5846,220.1523,324.5846C219.0893,324.5846,218.2673,324.8166,217.6893,325.2796C217.1103,325.7416,216.8203,326.4036,216.8203,327.2656 M225.1913,327.3696C225.1913,328.8606,224.7393,330.0506,223.8373,330.9416C222.9343,331.8316,221.7373,332.2766,220.2463,332.2766C218.6233,332.2766,217.3553,331.8126,216.4433,330.8846C215.5303,329.9566,215.0743,328.7056,215.0743,327.1336C215.0743,325.6226,215.5183,324.4476,216.4053,323.6036C217.2923,322.7606,218.5223,322.3386,220.0953,322.3386C221.6363,322.3386,222.8713,322.7936,223.7993,323.7026C224.7273,324.6126,225.1913,325.8336,225.1913,327.3696"
+                                          Fill="White"
+                                          Stretch="Fill" />
+                                    <Path Canvas.Left="4.643"
+                                          Canvas.Top="0"
+                                          Width="9.664"
+                                          Height="9.343"
+                                          Data="F1M215.3013,312.3359L220.1893,315.5539L224.9653,312.3739L224.9653,314.9119L221.9733,316.6109C221.7913,316.7179,221.5583,316.8439,221.2753,316.9879L221.2753,317.0259C221.3313,317.0519,221.5643,317.1839,221.9733,317.4229L224.9653,319.1489L224.9653,321.6789L220.2273,318.3949L215.3013,321.5089L215.3013,318.9609L218.4443,317.2899C218.6763,317.1649,218.9153,317.0419,219.1613,316.9219L219.1613,316.8939L215.3013,314.7319z"
+                                          Fill="White"
+                                          Stretch="Fill" />
+                                </Canvas>
+                            </Viewbox>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Trigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="MouseoverStoryBoard1" />
+                            </Trigger.ExitActions>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard x:Name="MouseoverStoryBoard1"
+                                                 Storyboard="{StaticResource MouseoverStoryBoard}" />
+                            </Trigger.EnterActions>
+                            <Setter TargetName="MouseOverBorder"
+                                    Property="Visibility"
+                                    Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsChecked"
+                                 Value="True">
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource UnCheckedStoryBoard}" />
+                            </Trigger.ExitActions>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource CheckedStoryBoard}" />
+                            </Trigger.EnterActions>
+                            <Setter Property="Visibility"
+                                    Value="Visible"
+                                    TargetName="IsExpandedState" />
+                        </Trigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Trigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="PressedStoryBoard1" />
+                            </Trigger.ExitActions>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard x:Name="PressedStoryBoard1"
+                                                 Storyboard="{StaticResource PressedStoryBoard}" />
+                            </Trigger.EnterActions>
+                            <Setter TargetName="PressedBorder"
+                                    Property="Visibility"
+                                    Value="Visible" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
